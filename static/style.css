@@ -1,0 +1,352 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body,
+html {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #f0f0f0;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1600px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.score-container {
+    text-align: center;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 300px;
+    box-sizing: border-box;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.score-container:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.heading {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.circle-progress {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 1rem;
+}
+
+.circle-progress svg {
+    transform: rotate(-90deg);
+}
+
+.circle-progress-background {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 8;
+}
+
+.circle-progress-value {
+    fill: none;
+    stroke-width: 8;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease-out, stroke 1s ease-in-out;
+}
+
+.recommendation-item {
+    background-color: #f7fafc;
+    border-left: 4px solid #3b82f6;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0 8px 8px 0;
+    transition: all 0.3s ease;
+}
+
+.recommendation-item:hover {
+    background-color: #ebf4ff;
+    transform: translateX(5px);
+}
+
+.score {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.description {
+    font-size: 0.9rem;
+    color: #555;
+    margin: 0.5rem 0;
+    height: 2.7em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.hover-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 1rem;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.score-container:hover .hover-info {
+    transform: translateY(0);
+}
+
+.reason,
+.improvement-tip {
+    font-size: 0.8rem;
+    color: #555;
+    margin: 0.5rem 0;
+    text-align: left;
+}
+
+.label {
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 1rem;
+}
+
+.card-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.chart-container {
+    position: relative;
+    height: 300px;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.chart-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.strengths-weaknesses-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.strengths-weaknesses-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.strengths,
+.weaknesses {
+    width: 100%;
+    margin-bottom: 1.5rem;
+}
+
+.tooltip {
+    position: absolute;
+    background: white;
+    border: 1px solid #e2e8f0;
+    padding: 0.75rem;
+    border-radius: 8px;
+    display: none;
+    z-index: 10;
+    font-size: 0.875rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 300px;
+}
+
+.strength-item,
+.weakness-item {
+    background-color: #f0f9ff;
+    border-left: 4px solid #3b82f6;
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0 8px 8px 0;
+}
+
+.weakness-item {
+    background-color: #fff0f0;
+    border-left-color: #ef4444;
+}
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.skill-bar {
+    height: 12px;
+    background-color: #e2e8f0;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.skill-progress {
+    height: 100%;
+    transition: width 1s ease-out;
+}
+
+.recommendations-people-container {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.recommended-people-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    height: 100%;
+}
+
+
+.recommended-people-list {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.recommended-person {
+    border-left: 4px solid #3b82f6;
+}
+
+.recommended-person:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+
+.recommended-person-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.recommended-person-info {
+    flex-grow: 1;
+}
+
+.recommended-person-name {
+    font-weight: 600;
+    margin: 0;
+}
+
+.recommended-person-title {
+    font-size: 0.875rem;
+    color: #666;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .recommendations-people-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+@media (max-width: 768px) {
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .score-container {
+        max-width: 100%;
+    }
+
+    .chart-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dashboard {
+        padding: 10px;
+    }
+
+    .card,
+    .chart-container {
+        padding: 1rem;
+    }
+
+    .card-header {
+        font-size: 1.2rem;
+    }
+
+    .hover-info {
+        position: static;
+        transform: none;
+        background-color: transparent;
+        padding: 1rem 0;
+    }
+}
+.experience-relevance-card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.experience-chart-container {
+    position: relative;
+    height: auto;
+    width: auto;
+}
